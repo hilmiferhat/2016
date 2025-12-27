@@ -18,7 +18,7 @@
         <span>FEEL 2016</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
+        <li><a href="#home">Ana sayfa</a></li>
         <li><a href="#categories">Categories</a></li>
         <li><a href="#about">About</a></li>
       </ul>
@@ -29,11 +29,14 @@
       <div class="intro-content">
         <div class="intro-year">2026</div>
         <h1 class="intro-title">Feel It Like 2016</h1>
-        <p class="intro-subtitle">Step back into the golden year that changed everything</p>
+        <p class="intro-subtitle">
+          Step back into the golden year that changed everything
+        </p>
         <p class="intro-description">
-          Remember when Pokemon GO had us exploring every corner of our neighborhoods?
-          When Drake's "One Dance" was the soundtrack to our summer?
-          When we wore chokers unironically and thought VR would take over the world?
+          Remember when Pokemon GO had us exploring every corner of our
+          neighborhoods? When Drake's "One Dance" was the soundtrack to our
+          summer? When we wore chokers unironically and thought VR would take
+          over the world?
         </p>
         <p class="intro-tagline">
           This isn't just nostalgia — it's a time machine back to 2016's magic.
@@ -43,8 +46,7 @@
         </button>
       </div>
       <div class="intro-visual">
-        <div class="floating-icons">
-        </div>
+        <div class="floating-icons"></div>
       </div>
     </section>
 
@@ -55,10 +57,7 @@
           <div class="book-mockup">
             <!-- Cover Page -->
             <div class="book-page cover active">
-              <div class="book-year">2016</div>
-              <div class="book-title">Feel It Like</div>
-              <div class="book-subtitle">A Nostalgic Journey</div>
-              <div class="page-hint">Click → to read</div>
+              <img src="book_cover.png" alt="2026 Feel It Like 2016 Book Cover" class="book-cover-image">
             </div>
 
             <!-- Page 1 -->
@@ -125,12 +124,13 @@
 
           <!-- Buy Now Button -->
           <div class="book-buy-section">
-            <button class="btn btn-primary book-buy-btn" id="go-to-buy-page">Buy Now - $12.99</button>
+            <button class="btn btn-primary book-buy-btn" id="go-to-buy-page">
+              Buy Now - $12.99
+            </button>
           </div>
         </div>
       </div>
     </section>
-
 
     <!-- Categories Section -->
     <section class="categories-section" id="categories">
@@ -146,6 +146,41 @@
           <button class="category-name" data-category="music">Music</button>
         </div>
 
+        <!-- Gaming Sub-filters (initially hidden) -->
+        <div class="sub-filters" id="gaming-sub-filters" style="display: none">
+          <div class="sub-filter-label">Gaming Categories:</div>
+          <div class="sub-filter-buttons">
+            <button
+              class="sub-filter-name active"
+              data-subcategory="all"
+              data-parent="gaming"
+            >
+              All Gaming
+            </button>
+            <button
+              class="sub-filter-name"
+              data-subcategory="ps4"
+              data-parent="gaming"
+            >
+              PS4
+            </button>
+            <button
+              class="sub-filter-name"
+              data-subcategory="ps5"
+              data-parent="gaming"
+            >
+              PS5
+            </button>
+            <button
+              class="sub-filter-name"
+              data-subcategory="general"
+              data-parent="gaming"
+            >
+              General
+            </button>
+          </div>
+        </div>
+
         <!-- Product Widget (always visible) -->
         <div class="product-widget" id="product-widget">
           <div class="widget-header">
@@ -153,163 +188,6 @@
           </div>
           <div class="products-grid" id="widget-products">
             <!-- Products will be dynamically loaded here -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="category-page" id="gaming" style="display: none">
-      <div class="category-container">
-        <div class="category-header">
-          <button class="back-to-home">← Back to Home</button>
-          <h1>Gaming Accessories</h1>
-          <p>Relive the 2016 gaming revolution</p>
-        </div>
-
-        <div class="products-grid">
-          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
-            <div class="product-card">
-              <div class="product-image">🎮</div>
-              <h3>Pokemon GO Plus Device</h3>
-              <p class="price">$35.00</p>
-              <div class="buy-widget">Buy on Amazon</div>
-            </div>
-          </a>
-
-          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
-            <div class="product-card">
-              <div class="product-image">🕹️</div>
-              <h3>Overwatch Collector's Edition</h3>
-              <p class="price">$129.99</p>
-              <div class="buy-widget">Buy on Amazon</div>
-            </div>
-          </a>
-
-          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
-            <div class="product-card">
-              <div class="product-image">📱</div>
-              <h3>Nintendo 3DS XL</h3>
-              <p class="price">$199.99</p>
-              <div class="buy-widget">Buy on Amazon</div>
-            </div>
-          </a>
-
-          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
-            <div class="product-card">
-              <div class="product-image">🎯</div>
-              <h3>VR Headset Starter Kit</h3>
-              <p class="price">$399.00</p>
-              <div class="buy-widget">Buy on Amazon</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="category-page" id="tech" style="display: none">
-      <div class="category-container">
-        <div class="category-header">
-          <button class="back-to-home">← Back to Home</button>
-          <h1>Tech Accessories</h1>
-          <p>The gadgets that defined 2016</p>
-        </div>
-
-        <div class="products-grid">
-          <div class="product-card">
-            <div class="product-image">📱</div>
-            <h3>iPhone 7 Wireless Headphones</h3>
-            <p class="price">$159.00</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">⌚</div>
-            <h3>Apple Watch Series 2</h3>
-            <p class="price">$369.00</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">💻</div>
-            <h3>MacBook Pro Touch Bar</h3>
-            <p class="price">$1799.00</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">🔌</div>
-            <h3>USB-C Hub Collection</h3>
-            <p class="price">$49.99</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="category-page" id="fashion" style="display: none">
-      <div class="category-container">
-        <div class="category-header">
-          <button class="back-to-home">← Back to Home</button>
-          <h1>Fashion Accessories</h1>
-          <p>2016's biggest style trends</p>
-        </div>
-
-        <div class="products-grid">
-          <div class="product-card">
-            <div class="product-image">📿</div>
-            <h3>Vintage Choker Collection</h3>
-            <p class="price">$24.99</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">🧥</div>
-            <h3>Bomber Jacket Classic</h3>
-            <p class="price">$89.00</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">👟</div>
-            <h3>Athleisure Sneaker Set</h3>
-            <p class="price">$119.99</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">👜</div>
-            <h3>Mini Backpack Trend</h3>
-            <p class="price">$54.00</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="category-page" id="music" style="display: none">
-      <div class="category-container">
-        <div class="category-header">
-          <button class="back-to-home">← Back to Home</button>
-          <h1>Music Accessories</h1>
-          <p>The sound of 2016</p>
-        </div>
-
-        <div class="products-grid">
-          <div class="product-card">
-            <div class="product-image">🎧</div>
-            <h3>Drake Views Vinyl</h3>
-            <p class="price">$34.99</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">🔊</div>
-            <h3>Chainsmokers Concert Tee</h3>
-            <p class="price">$29.99</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">🎵</div>
-            <h3>Beyoncé Lemonade Deluxe</h3>
-            <p class="price">$39.99</p>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">🎤</div>
-            <h3>Portable Bluetooth Speaker</h3>
-            <p class="price">$79.99</p>
           </div>
         </div>
       </div>
@@ -345,7 +223,9 @@
           </div>
         </div>
 
-        <button class="btn btn-primary popup-cta" id="popup-buy">Get The Book</button>
+        <button class="btn btn-primary popup-cta" id="popup-buy">
+          Get The Book
+        </button>
       </div>
     </div>
   </body>

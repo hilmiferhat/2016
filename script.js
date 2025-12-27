@@ -164,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // =====================
   // CATEGORIES POPUP
   // =====================
-  const exploreBtn = document.getElementById("explore-btn");
   const popup = document.getElementById("categories-popup");
   const popupClose = document.getElementById("popup-close");
   const popupBuy = document.getElementById("popup-buy");
@@ -186,16 +185,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Open popup - explore button
-  if (exploreBtn) {
-    exploreBtn.addEventListener("click", openPopup);
-  }
-
-  // Open popup - nav categories link
+  // Scroll to categories section - nav categories link
   if (navCategoriesLink) {
     navCategoriesLink.addEventListener("click", function (e) {
-      e.preventDefault();
-      openPopup();
+      const categoriesSection = document.getElementById('categories');
+      if (categoriesSection) {
+        categoriesSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
   }
 
@@ -240,14 +236,25 @@ document.addEventListener("DOMContentLoaded", function () {
   // CATEGORY WIDGET SYSTEM
   // =====================
 
-  // Product data
+  // Product data with subcategories
   const productData = {
-    gaming: [
-      { name: "Pokemon GO Plus Device", price: "$35.00", icon: "🎮", link: "https://www.amazon.com/dp/B01H482N6E" },
-      { name: "Overwatch Collector's Edition", price: "$129.99", icon: "🕹️", link: "https://www.amazon.com/dp/B017L187LE" },
-      { name: "Nintendo 3DS XL", price: "$199.99", icon: "📱", link: "https://www.amazon.com/dp/B01LYUA6OS" },
-      { name: "VR Headset Starter Kit", price: "$399.00", icon: "🎯", link: "https://www.amazon.com/dp/B00Z7D174S" }
-    ],
+    gaming: {
+      ps4: [
+        { name: "PS4 Controller DualShock 4", price: "$59.99", icon: "🎮", link: "https://www.amazon.com/dp/B01LWVX2RG", subcategory: "ps4" },
+        { name: "PS4 God of War Collector's Edition", price: "$129.99", icon: "🕹️", link: "https://www.amazon.com/dp/B077XBQZPX", subcategory: "ps4" },
+        { name: "PS4 Pro Console", price: "$399.99", icon: "📱", link: "https://www.amazon.com/dp/B01LOP8EZC", subcategory: "ps4" }
+      ],
+      ps5: [
+        { name: "PS5 DualSense Controller", price: "$69.99", icon: "🎮", link: "https://www.amazon.com/dp/B08FC6C75Y", subcategory: "ps5" },
+        { name: "PS5 Spider-Man Miles Morales", price: "$49.99", icon: "🕷️", link: "https://www.amazon.com/dp/B08FC5L3RG", subcategory: "ps5" },
+        { name: "PS5 Console", price: "$499.99", icon: "🎯", link: "https://www.amazon.com/dp/B08FC5L3RG", subcategory: "ps5" }
+      ],
+      general: [
+        { name: "Pokemon GO Plus Device", price: "$35.00", icon: "🎮", link: "https://www.amazon.com/dp/B01H482N6E", subcategory: "general" },
+        { name: "Nintendo 3DS XL", price: "$199.99", icon: "📱", link: "https://www.amazon.com/dp/B01LYUA6OS", subcategory: "general" },
+        { name: "VR Headset Starter Kit", price: "$399.00", icon: "🎯", link: "https://www.amazon.com/dp/B00Z7D174S", subcategory: "general" }
+      ]
+    },
     tech: [
       { name: "iPhone 7 Wireless Headphones", price: "$159.00", icon: "📱", link: "https://www.amazon.com/dp/B01LXFKGBS" },
       { name: "Apple Watch Series 2", price: "$369.00", icon: "⌚", link: "https://www.amazon.com/dp/B01M0URIQJ" },
@@ -273,12 +280,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const productWidget = document.getElementById('product-widget');
   const widgetTitle = document.getElementById('widget-title');
   const widgetProducts = document.getElementById('widget-products');
+  const gamingSubFilters = document.getElementById('gaming-sub-filters');
 
   categoryNames.forEach(name => {
     name.addEventListener('click', function() {
       const category = this.getAttribute('data-category');
       if (category) {
         filterProducts(category, this);
+
+        // Show/hide gaming sub-filters
+        if (category === 'gaming') {
+          showGamingSubFilters();
+        } else {
+          hideGamingSubFilters();
+        }
+      }
+    });
+  });
+
+  // Handle sub-filter clicks
+  const subFilterNames = document.querySelectorAll('.sub-filter-name');
+  subFilterNames.forEach(subFilter => {
+    subFilter.addEventListener('click', function() {
+      const subcategory = this.getAttribute('data-subcategory');
+      const parent = this.getAttribute('data-parent');
+      if (subcategory && parent) {
+        filterProductsBySubcategory(parent, subcategory, this);
       }
     });
   });
@@ -288,6 +315,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Update active state
     categoryNames.forEach(name => name.classList.remove('active'));
     clickedElement.classList.add('active');
+
+    // Reset gaming sub-filters
+    resetGamingSubFilters();
 
     // Set widget title
     const titles = {
@@ -308,7 +338,20 @@ document.addEventListener("DOMContentLoaded", function () {
     if (category === 'all') {
       // Show all products from all categories
       Object.keys(productData).forEach(cat => {
-        productsToShow = [...productsToShow, ...productData[cat]];
+        if (typeof productData[cat] === 'object' && !Array.isArray(productData[cat])) {
+          // For gaming (nested structure)
+          Object.keys(productData[cat]).forEach(subcat => {
+            productsToShow = [...productsToShow, ...productData[cat][subcat]];
+          });
+        } else {
+          // For other categories (flat arrays)
+          productsToShow = [...productsToShow, ...productData[cat]];
+        }
+      });
+    } else if (category === 'gaming') {
+      // Show all gaming products (all subcategories)
+      Object.keys(productData.gaming).forEach(subcat => {
+        productsToShow = [...productsToShow, ...productData.gaming[subcat]];
       });
     } else {
       // Show products from specific category
@@ -316,7 +359,53 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Create product cards
-    productsToShow.forEach(product => {
+    createProductCards(productsToShow);
+
+    // Scroll to widget on first click
+    if (category !== 'all') {
+      productWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  // Filter products by subcategory (for gaming)
+  function filterProductsBySubcategory(parentCategory, subcategory, clickedElement) {
+    // Update sub-filter active state
+    const subFilterButtons = document.querySelectorAll('.sub-filter-name');
+    subFilterButtons.forEach(btn => btn.classList.remove('active'));
+    clickedElement.classList.add('active');
+
+    // Set widget title
+    const subTitles = {
+      all: 'Gaming Products',
+      ps4: 'PS4 Products',
+      ps5: 'PS5 Products',
+      general: 'General Gaming Products'
+    };
+    widgetTitle.textContent = subTitles[subcategory];
+
+    // Clear and populate products
+    widgetProducts.innerHTML = '';
+    widgetProducts.className = 'products-grid widget-products';
+
+    // Get products to show
+    let productsToShow = [];
+    if (subcategory === 'all') {
+      // Show all gaming products
+      Object.keys(productData.gaming).forEach(subcat => {
+        productsToShow = [...productsToShow, ...productData.gaming[subcat]];
+      });
+    } else {
+      // Show products from specific subcategory
+      productsToShow = productData.gaming[subcategory] || [];
+    }
+
+    // Create product cards
+    createProductCards(productsToShow);
+  }
+
+  // Helper function to create product cards
+  function createProductCards(products) {
+    products.forEach(product => {
       const productCard = document.createElement('div');
       productCard.className = 'product-card';
       productCard.innerHTML = `
@@ -327,10 +416,35 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       widgetProducts.appendChild(productCard);
     });
+  }
 
-    // Scroll to widget on first click
-    if (category !== 'all') {
-      productWidget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // Show gaming sub-filters
+  function showGamingSubFilters() {
+    if (gamingSubFilters) {
+      gamingSubFilters.style.display = 'block';
+      setTimeout(() => {
+        gamingSubFilters.classList.add('show');
+      }, 50);
+    }
+  }
+
+  // Hide gaming sub-filters
+  function hideGamingSubFilters() {
+    if (gamingSubFilters) {
+      gamingSubFilters.classList.remove('show');
+      setTimeout(() => {
+        gamingSubFilters.style.display = 'none';
+      }, 300);
+    }
+  }
+
+  // Reset gaming sub-filters to default
+  function resetGamingSubFilters() {
+    const subFilterButtons = document.querySelectorAll('.sub-filter-name');
+    subFilterButtons.forEach(btn => btn.classList.remove('active'));
+    const allGamingBtn = document.querySelector('.sub-filter-name[data-subcategory="all"]');
+    if (allGamingBtn) {
+      allGamingBtn.classList.add('active');
     }
   }
 
@@ -346,66 +460,38 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeProducts();
 
   // =====================
-  // LEGACY CATEGORY NAVIGATION (for existing category pages)
+  // CATEGORY POPUP NAVIGATION
   // =====================
 
-  // Handle category card clicks in popup
+  // Handle category card clicks in popup - now just filters products
   const categoryCards = document.querySelectorAll('.category-card');
-  const categoryPages = document.querySelectorAll('.category-page');
-  const categoriesSection = document.querySelector('.categories-section');
 
   categoryCards.forEach(card => {
     card.addEventListener('click', function() {
       const category = this.getAttribute('data-category');
       if (category) {
-        showCategoryPage(category);
-        closePopup();
+        // Find the matching category button and trigger its click
+        const categoryButton = document.querySelector(`.category-name[data-category="${category}"]`);
+        if (categoryButton) {
+          filterProducts(category, categoryButton);
+
+          // Show gaming sub-filters if gaming is selected
+          if (category === 'gaming') {
+            showGamingSubFilters();
+          } else {
+            hideGamingSubFilters();
+          }
+
+          closePopup();
+          // Scroll to categories section
+          const categoriesSection = document.getElementById('categories');
+          if (categoriesSection) {
+            categoriesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
       }
     });
   });
-
-  // Show category page
-  function showCategoryPage(category) {
-    // Hide main sections
-    if (introPage) introPage.style.display = 'none';
-    if (heroSection) heroSection.style.display = 'none';
-    if (categoriesSection) categoriesSection.style.display = 'none';
-
-    // Hide all category pages
-    categoryPages.forEach(page => {
-      page.style.display = 'none';
-    });
-
-    // Show selected category page
-    const targetPage = document.getElementById(category);
-    if (targetPage) {
-      targetPage.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  // Handle back to home buttons
-  const backToHomeButtons = document.querySelectorAll('.back-to-home');
-  backToHomeButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      showHomePage();
-    });
-  });
-
-  // Show home page
-  function showHomePage() {
-    // Hide all category pages
-    categoryPages.forEach(page => {
-      page.style.display = 'none';
-    });
-
-    // Show all main sections
-    if (introPage) introPage.style.display = 'flex';
-    if (heroSection) heroSection.style.display = 'flex';
-    if (categoriesSection) categoriesSection.style.display = 'block';
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 
   // =====================
   // SMOOTH SCROLLING FOR ALL NAVIGATION LINKS
@@ -422,21 +508,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // Handle categories link - only open popup
-      if (href === '#categories') {
-        e.preventDefault();
-        openPopup();
-        return;
-      }
-
-      // Handle home link
-      if (href === '#home') {
-        e.preventDefault();
-        showHomePage();
-        return;
-      }
-
-      // Find target element for other links
+      // Find target element
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
 

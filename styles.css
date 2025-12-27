@@ -262,63 +262,6 @@ nav {
   height: 100%;
 }
 
-.float-icon {
-  position: absolute;
-  font-size: 3rem;
-  opacity: 0.6;
-  animation: floatIcon 12s ease-in-out infinite;
-}
-
-.icon-1 {
-  top: 15%;
-  left: 10%;
-  animation-delay: 0s;
-}
-.icon-2 {
-  top: 25%;
-  right: 15%;
-  animation-delay: 2s;
-}
-.icon-3 {
-  bottom: 30%;
-  left: 20%;
-  animation-delay: 4s;
-}
-.icon-4 {
-  top: 60%;
-  right: 25%;
-  animation-delay: 6s;
-}
-.icon-5 {
-  bottom: 20%;
-  right: 10%;
-  animation-delay: 8s;
-}
-.icon-6 {
-  top: 40%;
-  left: 5%;
-  animation-delay: 10s;
-}
-
-@keyframes floatIcon {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 0.4;
-  }
-  25% {
-    transform: translateY(-30px) rotate(5deg);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translateY(-15px) rotate(-3deg);
-    opacity: 0.6;
-  }
-  75% {
-    transform: translateY(-40px) rotate(2deg);
-    opacity: 0.9;
-  }
-}
 
 /* Intro page responsive */
 @media (max-width: 900px) {
@@ -345,10 +288,6 @@ nav {
   .explore-btn {
     font-size: 1rem;
     padding: 1.2rem 2.5rem;
-  }
-
-  .float-icon {
-    font-size: 2rem;
   }
 }
 
@@ -500,6 +439,58 @@ nav {
 /* Cover Styles */
 .book-page.cover {
   background: linear-gradient(135deg, var(--dark) 0%, #1a252f 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-page.cover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  background: linear-gradient(to right,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.1) 100%);
+  z-index: 15;
+  border-radius: 0;
+}
+
+.book-page.cover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 70%,
+    rgba(0, 0, 0, 0.1) 100%);
+  z-index: 12;
+  pointer-events: none;
+}
+
+.book-cover-image {
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 0 12px 12px 0;
+  filter: brightness(1.05) contrast(1.15) saturate(1.1);
+  transition: all 0.3s ease;
+  margin: 4px 4px 4px 0;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .book-year {
@@ -526,12 +517,24 @@ nav {
   margin-top: 0.5rem;
 }
 
-.page-hint {
+.book-page.cover .page-hint {
   position: absolute;
-  bottom: 2rem;
-  font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
+  bottom: 1.5rem;
+  right: 2rem;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.95);
   animation: pulse 2s ease-in-out infinite;
+  z-index: 20;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6));
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  backdrop-filter: blur(8px);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 @keyframes pulse {
@@ -629,43 +632,6 @@ nav {
   color: white;
 }
 
-.lock-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.buy-prompt h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.4rem;
-  font-weight: 900;
-  margin-bottom: 0.5rem;
-}
-
-.buy-prompt p {
-  font-size: 0.9rem;
-  opacity: 0.9;
-  margin-bottom: 1.5rem;
-}
-
-.btn-small {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.8rem;
-  background: var(--accent);
-  color: var(--dark);
-}
-
-.btn-small:hover {
-  background: #d4ac0d;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.price-tag {
-  margin-top: 1rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
-  opacity: 0.8;
-}
 
 /* Book Controls */
 .book-controls {
@@ -741,7 +707,7 @@ nav {
    ===================== */
 .categories-section {
   padding: 5rem 2rem;
-  background: url('back_new.png') center center / cover no-repeat;
+  background: url("category_back.png") center center / cover no-repeat;
   text-align: center;
   position: relative;
 }
@@ -798,9 +764,70 @@ nav {
   color: white;
 }
 
+/* Sub-filters styling */
+.sub-filters {
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 800px;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.sub-filters.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sub-filter-label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.sub-filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.sub-filter-name {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--wet-asphalt);
+  color: var(--wet-asphalt);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 25px;
+}
+
+.sub-filter-name:hover {
+  background: var(--wet-asphalt);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sub-filter-name.active {
+  background: var(--turquoise);
+  border-color: var(--turquoise);
+  color: white;
+  box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
+}
+
 /* Product Widget */
 .product-widget {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 2rem auto 0;
   background: transparent;
   padding: 2rem;
@@ -850,7 +877,7 @@ nav {
 /* Products Grid - Always 3 columns */
 .widget-products {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin: 0 auto;
 }
@@ -1067,49 +1094,6 @@ nav {
   text-align: center;
 }
 
-/* =====================
-   BUY SECTION
-   ===================== */
-.buy-section {
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--dark) 0%, var(--midnight) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.buy-section::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 600px;
-  height: 600px;
-  background: var(--primary);
-  border-radius: 50%;
-  opacity: 0.1;
-}
-
-.buy-container {
-  max-width: 500px;
-  margin: 0 auto;
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-
-.buy-content h2 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: white;
-  margin-bottom: 0.5rem;
-}
-
-.buy-tagline {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
 
 .price-box {
   display: inline-flex;
@@ -1213,27 +1197,7 @@ nav {
     font-size: 0.85rem;
   }
 
-  .buy-content h2 {
-    font-size: 2rem;
-  }
 
-  .price-box .amount {
-    font-size: 4rem;
-  }
-
-  .categories-section .category-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0 1rem;
-  }
-
-  .categories-section .category-card {
-    padding: 1.5rem;
-  }
-
-  .categories-section .category-icon {
-    font-size: 2.5rem;
-  }
 
   .categories-cta h2 {
     font-size: 1.5rem;
@@ -1258,7 +1222,7 @@ nav {
   }
 
   .widget-products {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
@@ -1286,178 +1250,18 @@ nav {
     padding: 0.8rem 1rem;
     font-size: 0.8rem;
   }
-}
 
-/* =====================
-   CATEGORY PAGES
-   ===================== */
-.category-page {
-  min-height: 100vh;
-  padding: 6rem 2rem 4rem;
-  background: var(--light) url("category_back.png") center center / cover
-    no-repeat;
-}
-
-.category-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.category-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.back-to-home {
-  background: transparent;
-  border: 2px solid var(--dark);
-  color: var(--dark);
-  padding: 0.75rem 1.5rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.back-to-home:hover {
-  background: var(--dark);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.category-header h1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--dark);
-  margin-bottom: 0.5rem;
-}
-
-.category-header p {
-  font-size: 1.2rem;
-  color: var(--wet-asphalt);
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: auto auto;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.product-card {
-  background: white;
-  border-radius: 8px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.product-image {
-  width: 100%;
-  height: 200px;
-  background: #f8f9fa;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-}
-
-.product-card h3 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--dark);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.product-card .price {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--wet-asphalt);
-}
-
-.product-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-}
-
-.product-link:hover {
-  text-decoration: none;
-  color: inherit;
-}
-
-.buy-widget {
-  background: var(--primary);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 1rem;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.3s ease;
-}
-
-.product-card:hover .buy-widget {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.buy-widget:hover {
-  background: #2980b9;
-}
-
-/* Note: Removed special styling for 4th and 5th products to ensure uniform widget layout */
-
-/* Category page responsive */
-@media (max-width: 768px) {
-  .category-page {
-    padding: 4rem 1rem 2rem;
+  /* Sub-filters responsive */
+  .sub-filter-buttons {
+    gap: 0.5rem;
   }
 
-  .category-header h1 {
-    font-size: 2rem;
-  }
-
-  .products-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 1.5rem;
-  }
-
-
-  .product-card {
-    padding: 1.5rem;
-  }
-
-  .product-image {
-    height: 160px;
-    font-size: 3rem;
+  .sub-filter-name {
+    font-size: 0.8rem;
+    padding: 0.6rem 1.2rem;
   }
 }
+
 
 /* =====================
    ANIMATIONS
