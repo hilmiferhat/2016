@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2026 Feel It Like 2016</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <a href="#" class="logo">
+        <div class="logo-icon">16</div>
+        <span>FEEL 2016</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Introduction Page -->
+    <section class="intro-page" id="intro">
+      <div class="intro-content">
+        <div class="intro-year">2026</div>
+        <h1 class="intro-title">Feel It Like 2016</h1>
+        <p class="intro-subtitle">Step back into the golden year that changed everything</p>
+        <p class="intro-description">
+          Remember when Pokemon GO had us exploring every corner of our neighborhoods?
+          When Drake's "One Dance" was the soundtrack to our summer?
+          When we wore chokers unironically and thought VR would take over the world?
+        </p>
+        <p class="intro-tagline">
+          This isn't just nostalgia — it's a time machine back to 2016's magic.
+        </p>
+        <button class="btn btn-primary explore-btn" id="explore-more">
+          Explore More
+        </button>
+      </div>
+      <div class="intro-visual">
+        <div class="floating-icons">
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="book-container">
+          <div class="book-mockup">
+            <!-- Cover Page -->
+            <div class="book-page cover active">
+              <div class="book-year">2016</div>
+              <div class="book-title">Feel It Like</div>
+              <div class="book-subtitle">A Nostalgic Journey</div>
+              <div class="page-hint">Click → to read</div>
+            </div>
+
+            <!-- Page 1 -->
+            <div class="book-page page-1">
+              <div class="page-header">Introduction</div>
+              <div class="page-content">
+                <p class="drop-cap">
+                  Remember 2016? Pokemon GO had us wandering the streets.
+                  Snapchat was king. We vibed to Drake and The Chainsmokers.
+                </p>
+                <p>
+                  This book is your portal back to simpler times — when the
+                  biggest debate was Team Instinct vs Team Mystic.
+                </p>
+              </div>
+              <div class="page-number">1</div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="book-page page-2">
+              <div class="page-header">What's Inside</div>
+              <div class="page-content">
+                <ul class="toc-list">
+                  <li><span class="toc-icon">🎮</span> Gaming Nostalgia</li>
+                  <li><span class="toc-icon">💻</span> Tech We Loved</li>
+                  <li><span class="toc-icon">👕</span> Fashion Throwback</li>
+                  <li><span class="toc-icon">🎵</span> The Soundtrack</li>
+                </ul>
+              </div>
+              <div class="page-number">2</div>
+            </div>
+
+            <!-- Page 3 - Buy Page -->
+            <div class="book-page page-3 buy-page">
+              <div class="buy-prompt">
+                <div class="price-box">
+                  <span class="currency">$</span>
+                  <span class="amount">12</span>
+                  <span class="cents">.99</span>
+                </div>
+
+                <ul class="features-list">
+                  <li>✓ Instant PDF Download</li>
+                  <li>✓ All 4 Categories Covered</li>
+                  <li>✓ Bonus: 2016 Playlist</li>
+                  <li>✓ Lifetime Access</li>
+                </ul>
+
+                <button class="btn btn-buy" id="checkout-btn-book">
+                  BUY NOW — $12.99
+                </button>
+
+                <p class="secure-note">🔒 Secure checkout powered by Stripe</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Controls -->
+          <div class="book-controls">
+            <button class="page-nav page-prev">←</button>
+            <span class="page-indicator">1 / 4</span>
+            <button class="page-nav page-next">→</button>
+          </div>
+
+          <!-- Buy Now Button -->
+          <div class="book-buy-section">
+            <button class="btn btn-primary book-buy-btn" id="go-to-buy-page">Buy Now - $12.99</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+      <div class="categories-cta">
+        <h2>Choose Your Nostalgia</h2>
+        <p class="categories-subtitle">What do you miss most about 2016?</p>
+
+        <div class="category-names">
+          <button class="category-name active" data-category="all">All</button>
+          <button class="category-name" data-category="gaming">Gaming</button>
+          <button class="category-name" data-category="tech">Technology</button>
+          <button class="category-name" data-category="fashion">Fashion</button>
+          <button class="category-name" data-category="music">Music</button>
+        </div>
+
+        <!-- Product Widget (always visible) -->
+        <div class="product-widget" id="product-widget">
+          <div class="widget-header">
+            <h3 id="widget-title">All Products</h3>
+          </div>
+          <div class="products-grid" id="widget-products">
+            <!-- Products will be dynamically loaded here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="category-page" id="gaming" style="display: none">
+      <div class="category-container">
+        <div class="category-header">
+          <button class="back-to-home">← Back to Home</button>
+          <h1>Gaming Accessories</h1>
+          <p>Relive the 2016 gaming revolution</p>
+        </div>
+
+        <div class="products-grid">
+          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
+            <div class="product-card">
+              <div class="product-image">🎮</div>
+              <h3>Pokemon GO Plus Device</h3>
+              <p class="price">$35.00</p>
+              <div class="buy-widget">Buy on Amazon</div>
+            </div>
+          </a>
+
+          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
+            <div class="product-card">
+              <div class="product-image">🕹️</div>
+              <h3>Overwatch Collector's Edition</h3>
+              <p class="price">$129.99</p>
+              <div class="buy-widget">Buy on Amazon</div>
+            </div>
+          </a>
+
+          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
+            <div class="product-card">
+              <div class="product-image">📱</div>
+              <h3>Nintendo 3DS XL</h3>
+              <p class="price">$199.99</p>
+              <div class="buy-widget">Buy on Amazon</div>
+            </div>
+          </a>
+
+          <a href="https://www.amazon.com.tr/Kablolu-Oyuncu-I%C5%9F%C4%B1kl%C4%B1-Gaming-M260/dp/B0827JBJVH/?_encoding=UTF8&pd_rd_w=dTceU&content-id=amzn1.sym.d97f9a2d-5bcb-409d-a710-1bc8495109e7%3Aamzn1.symc.752cde0b-d2ce-4cce-9121-769ea438869e&pf_rd_p=d97f9a2d-5bcb-409d-a710-1bc8495109e7&pf_rd_r=S7VN2B0BZECM3SS44F10&pd_rd_wg=GdgIE&pd_rd_r=53679cd9-e723-4f30-92bb-0512701fe6f1&ref_=pd_hp_d_atf_ci_mcx_mr_ca_hp_atf_d" target="_blank" class="product-link">
+            <div class="product-card">
+              <div class="product-image">🎯</div>
+              <h3>VR Headset Starter Kit</h3>
+              <p class="price">$399.00</p>
+              <div class="buy-widget">Buy on Amazon</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="category-page" id="tech" style="display: none">
+      <div class="category-container">
+        <div class="category-header">
+          <button class="back-to-home">← Back to Home</button>
+          <h1>Tech Accessories</h1>
+          <p>The gadgets that defined 2016</p>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">📱</div>
+            <h3>iPhone 7 Wireless Headphones</h3>
+            <p class="price">$159.00</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">⌚</div>
+            <h3>Apple Watch Series 2</h3>
+            <p class="price">$369.00</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">💻</div>
+            <h3>MacBook Pro Touch Bar</h3>
+            <p class="price">$1799.00</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🔌</div>
+            <h3>USB-C Hub Collection</h3>
+            <p class="price">$49.99</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="category-page" id="fashion" style="display: none">
+      <div class="category-container">
+        <div class="category-header">
+          <button class="back-to-home">← Back to Home</button>
+          <h1>Fashion Accessories</h1>
+          <p>2016's biggest style trends</p>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">📿</div>
+            <h3>Vintage Choker Collection</h3>
+            <p class="price">$24.99</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🧥</div>
+            <h3>Bomber Jacket Classic</h3>
+            <p class="price">$89.00</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">👟</div>
+            <h3>Athleisure Sneaker Set</h3>
+            <p class="price">$119.99</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">👜</div>
+            <h3>Mini Backpack Trend</h3>
+            <p class="price">$54.00</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="category-page" id="music" style="display: none">
+      <div class="category-container">
+        <div class="category-header">
+          <button class="back-to-home">← Back to Home</button>
+          <h1>Music Accessories</h1>
+          <p>The sound of 2016</p>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">🎧</div>
+            <h3>Drake Views Vinyl</h3>
+            <p class="price">$34.99</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🔊</div>
+            <h3>Chainsmokers Concert Tee</h3>
+            <p class="price">$29.99</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🎵</div>
+            <h3>Beyoncé Lemonade Deluxe</h3>
+            <p class="price">$39.99</p>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">🎤</div>
+            <h3>Portable Bluetooth Speaker</h3>
+            <p class="price">$79.99</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Popup -->
+    <div class="popup-overlay" id="categories-popup">
+      <div class="popup-content">
+        <button class="popup-close" id="popup-close">✕</button>
+        <h2 class="popup-title">Choose Your Nostalgia</h2>
+        <p class="popup-subtitle">What do you miss most about 2016?</p>
+
+        <div class="category-grid">
+          <div class="category-card gaming" data-category="gaming">
+            <div class="category-icon">🎮</div>
+            <h3>Gaming</h3>
+            <p>Pokemon GO, Overwatch, and more</p>
+          </div>
+          <div class="category-card tech" data-category="tech">
+            <div class="category-icon">💻</div>
+            <h3>Technology</h3>
+            <p>iPhone 7, VR hype, and gadgets</p>
+          </div>
+          <div class="category-card fashion" data-category="fashion">
+            <div class="category-icon">👕</div>
+            <h3>Fashion</h3>
+            <p>Chokers, bomber jackets, athleisure</p>
+          </div>
+          <div class="category-card music" data-category="music">
+            <div class="category-icon">🎵</div>
+            <h3>Music</h3>
+            <p>Drake, Chainsmokers, Beyoncé</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary popup-cta" id="popup-buy">Get The Book</button>
+      </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
