@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Scroll to book to show the buy page
       if (book) {
-        book.scrollIntoView({ behavior: "smooth", block: "center" });
+        book.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   }
@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Scroll to book to show the buy page
       if (book) {
-        book.scrollIntoView({ behavior: "smooth", block: "center" });
+        book.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   }

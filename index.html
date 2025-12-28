@@ -11,21 +11,22 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Navigation -->
-    <nav>
-      <a href="#" class="logo">
-        <div class="logo-icon">16</div>
-        <span>FEEL 2016</span>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#home">Ana sayfa</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#about">About</a></li>
-      </ul>
-    </nav>
 
     <!-- Introduction Page -->
     <section class="intro-page" id="intro">
+      <!-- Navigation in intro -->
+      <div class="intro-nav">
+        <div class="intro-logo">
+          <div class="intro-logo-icon">16</div>
+          <span>Hopeless Nostalgics</span>
+        </div>
+        <ul class="intro-nav-links">
+          <li><a href="#home">Ana sayfa</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+
       <div class="intro-content">
         <div class="intro-year">2026</div>
         <h1 class="intro-title">Feel It Like 2016</h1>
@@ -57,7 +58,11 @@
           <div class="book-mockup">
             <!-- Cover Page -->
             <div class="book-page cover active">
-              <img src="book_cover.png" alt="2026 Feel It Like 2016 Book Cover" class="book-cover-image">
+              <img
+                src="book_cover.png"
+                alt="2026 Feel It Like 2016 Book Cover"
+                class="book-cover-image"
+              />
             </div>
 
             <!-- Page 1 -->
@@ -91,27 +96,8 @@
             </div>
 
             <!-- Page 3 - Buy Page -->
-            <div class="book-page page-3 buy-page">
-              <div class="buy-prompt">
-                <div class="price-box">
-                  <span class="currency">$</span>
-                  <span class="amount">12</span>
-                  <span class="cents">.99</span>
-                </div>
-
-                <ul class="features-list">
-                  <li>✓ Instant PDF Download</li>
-                  <li>✓ All 4 Categories Covered</li>
-                  <li>✓ Bonus: 2016 Playlist</li>
-                  <li>✓ Lifetime Access</li>
-                </ul>
-
-                <button class="btn btn-buy" id="checkout-btn-book">
-                  BUY NOW — $12.99
-                </button>
-
-                <p class="secure-note">🔒 Secure checkout powered by Stripe</p>
-              </div>
+            <div class="book-page page-3">
+              <img src="book_last_page.png" alt="Book Last Page" class="book-last-page-image">
             </div>
           </div>
 
